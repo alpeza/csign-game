@@ -1,32 +1,38 @@
 VELOCITY_FACTOR=2
 POPING_EFFECT=SCREEN_WIDTH
-DENSITY=5
+DENSITY=3
 
-TOP_BUILDINGS = {64,65,66,67,68,69}
+TOP_BUILDINGS = {64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79}
 MIDDLE_BUILDINGS = {80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95}
-BOTTOM_BUILDINGS = {96,97,98,99,100,101}
+BOTTOM_BUILDINGS = {96,97,98,99,100,101,101,102,103,104,105,106,107,108,109,110,111}
+BASE_PARALLAX=2
 
 function Background()
     return {
+        ypos = 0,
         seawave = sinFactory(260,128,128 - 50,50,500,3,12,0.01,1,1),
-        bgo_ly1 = GenBackgroundObjects(CollisionMap(0,0,SCREEN_WIDTH,40),{8,9,10,11,12,13,14}, 1 * VELOCITY_FACTOR,2*DENSITY),
-        bgo_ly2 = GenBackgroundObjects(CollisionMap(0,4,SCREEN_WIDTH,40),{24,25,25,25,25,26,26,26,26,26,27,28}, 0.5 * VELOCITY_FACTOR,2*DENSITY),
-        bgo_ly3 = GenBuildings(CollisionMap(0,65,SCREEN_WIDTH,20),BOTTOM_BUILDINGS, MIDDLE_BUILDINGS, TOP_BUILDINGS,0.25 * VELOCITY_FACTOR,5*DENSITY),
-        bgo_ly4 = GenBuildings(CollisionMap(0,70,SCREEN_WIDTH,40),BOTTOM_BUILDINGS, MIDDLE_BUILDINGS, TOP_BUILDINGS,0.125 * VELOCITY_FACTOR,20*DENSITY),
+        bgo_ly1 = GenBackgroundObjects(CollisionMap(0,0,SCREEN_WIDTH,40),{8,9,10,11,12,13,14}, BASE_PARALLAX * VELOCITY_FACTOR,2*DENSITY),
+        bgo_ly2 = GenBackgroundObjects(CollisionMap(0,4,SCREEN_WIDTH,40),{24,25,25,25,25,26,26,26,26,26,27,28}, BASE_PARALLAX/2 * VELOCITY_FACTOR,2*DENSITY),
+        bgo_ly3 = GenBuildings(CollisionMap(0,65,SCREEN_WIDTH,40),BOTTOM_BUILDINGS, MIDDLE_BUILDINGS, TOP_BUILDINGS,BASE_PARALLAX/3 * VELOCITY_FACTOR,5*DENSITY),
+        bgo_ly4 = GenBuildings(CollisionMap(0,70,SCREEN_WIDTH,20),BOTTOM_BUILDINGS, MIDDLE_BUILDINGS, TOP_BUILDINGS,BASE_PARALLAX/4 * VELOCITY_FACTOR,20*DENSITY),
+        bgo_ly5 = GenBuildings(CollisionMap(0,70,SCREEN_WIDTH,10),BOTTOM_BUILDINGS, MIDDLE_BUILDINGS, TOP_BUILDINGS,BASE_PARALLAX/5 * VELOCITY_FACTOR,20*DENSITY),
         init = function(self)
             self.seawave:init()
             self.bgo_ly1:init()
             self.bgo_ly2:init()
             self.bgo_ly3:init()
             self.bgo_ly4:init()
+            self.bgo_ly5:init()
         end,
         update = function(self)
             self.bgo_ly1:update()
             self.bgo_ly2:update()
             self.bgo_ly3:update()
             self.bgo_ly4:update()
+            self.bgo_ly5:update()
         end,
         draw = function(self)
+            self.bgo_ly5:draw()
             self.bgo_ly4:draw()
             self.bgo_ly3:draw()
             map(0, 0, 0, 0, 128, 32)
