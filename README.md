@@ -1,11 +1,11 @@
 > WIP: Work in Progress
 
-# csign-game
+# CyberShot
 Side Scroller Game for pico-8
 
 ## Download the cartridge
 
-![cover](csign.p8.png)
+![cover](cybershot.p8.png)
 
 ## Play
 

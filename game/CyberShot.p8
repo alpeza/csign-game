@@ -1,7 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 32
 __lua__
--- CSign Game
+-- CyberShot
 -- by @alpeza
 -- 🐱 github: https://github.com/alpeza/csign-game.git
 #include Logger.lua
